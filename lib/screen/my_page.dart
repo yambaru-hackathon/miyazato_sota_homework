@@ -15,7 +15,22 @@ class Styles {
 }
 
 class MyPage extends StatelessWidget {
-  const MyPage({super.key});
+	MyPage({Key? key}) : super(key: key);
+
+  final images = [
+    'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
+    'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
+		'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
+    'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
+		'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
+    'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
+		'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
+    'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
+		'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
+    'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
+		'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
+    'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +99,7 @@ class MyPage extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 12),
+                                  fontSize: 14),
                             )),
                       ),
                       const SizedBox(width: 4),
@@ -117,14 +132,24 @@ class MyPage extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             primary: false,
             crossAxisCount: 3,
-            children: <Widget>[
-              Image.network(
-                'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
-              ),
-            ],
+            children:
+							images.map((imageUrl) => PostItem(imageUrl: imageUrl)).toList(),
           )
         ]),
       ),
+    );
+  }
+}
+
+class PostItem extends StatelessWidget {
+  const PostItem({Key? key, required this.imageUrl}) : super(key: key);
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(
+      imageUrl,
     );
   }
 }

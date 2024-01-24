@@ -136,9 +136,8 @@ class PostItemWidget extends StatelessWidget {
 
 //  image
 //  likes
-//  name
 //  description
-//  tag
+
   @override
   Widget build(BuildContext context) {
     return (Padding(
@@ -171,18 +170,18 @@ class PostItemWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('${postItem['name']} ${postItem['description']}'),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('#${postItem['tag']}'),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('続きを読む'),
+            child: Text('${postItem['description']}'),
           ),
         ],
       ),
     ));
+  }
+
+  Widget createDescriptionWidget(bool verified) {
+    if (verified) {
+      return const Icon(Icons.verified, color: Colors.blue, size: 16);
+    } else {
+      return const Text("");
+    }
   }
 }

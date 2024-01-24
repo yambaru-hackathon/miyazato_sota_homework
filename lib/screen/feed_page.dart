@@ -136,6 +136,7 @@ class PostItemWidget extends StatelessWidget {
   const PostItemWidget({Key? key, required this.postItem}) : super(key: key);
 
   final Map postItem;
+  final bool isReadMore = false;
 
 //  image
 //  likes
@@ -170,24 +171,29 @@ class PostItemWidget extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Text('「いいね！」${postItem['likes']}件',
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13
-                  ))),
+                      fontWeight: FontWeight.bold, fontSize: 13))),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(postItem['description'],
-                style: const TextStyle(fontSize: 12)),
-          ),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: createDescriptionWidget(isReadMore)),
         ],
       ),
     ));
   }
 
-  Widget createDescriptionWidget(bool verified) {
-    if (verified) {
-      return const Icon(Icons.verified, color: Colors.blue, size: 16);
+  Widget createDescriptionWidget(bool readMore) {
+    if (readMore) {
+      return Text(postItem['description'],
+          style: const TextStyle(fontSize: 12));
     } else {
-      return const Text("");
+      return Expanded(
+        child: (
+          Text(
+            postItem['description'],
+            style: const TextStyle(fontSize: 12),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            )),
+      );
     }
   }
 }

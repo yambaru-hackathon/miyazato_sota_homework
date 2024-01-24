@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
 class Styles {
   static ButtonStyle setRadiusValue(double value) {
@@ -174,7 +175,17 @@ class PostItemWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontSize: 13))),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: createDescriptionWidget(isReadMore)),
+              child: ReadMoreText(
+                postItem['description'],
+                trimLines: 2,
+                colorClickableText: Colors.pink,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: '続きを読む',
+                trimExpandedText: '閉じる',
+                postDataTextStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold,),
+                moreStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
+                lessStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
+              )),
         ],
       ),
     ));

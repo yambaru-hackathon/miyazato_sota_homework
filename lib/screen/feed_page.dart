@@ -142,7 +142,7 @@ class PostItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -179,7 +179,7 @@ class PostItemWidget extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('すべて見る'),
+            child: Text('続きを読む'),
           ),
         ],
       ),

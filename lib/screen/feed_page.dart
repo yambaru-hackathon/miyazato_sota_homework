@@ -39,7 +39,8 @@ class FeedPage extends StatelessWidget {
       'image':
           'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
       'likes': "704,899",
-      'description': 'Exciting Updates Alert! 🚀 Swipe left to dive into the latest features and enhancements designed just for you. From sleek designs to powerful functionalities, your Instagram experience is getting a boost! 🌟✨'
+      'description':
+          'Exciting Updates Alert! 🚀 Swipe left to dive into the latest features and enhancements designed just for you. From sleek designs to powerful functionalities, your Instagram experience is getting a boost! 🌟✨'
     },
     {
       'image':
@@ -166,13 +167,16 @@ class PostItemWidget extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('「いいね！」${postItem['likes']}件',
-                style: Styles.mediumTextBold),
-          ),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Text('「いいね！」${postItem['likes']}件',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13
+                  ))),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('${postItem['description']}'),
+            child: Text(postItem['description'],
+                style: const TextStyle(fontSize: 12)),
           ),
         ],
       ),

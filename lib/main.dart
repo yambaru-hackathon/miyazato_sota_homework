@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 195, 15, 114)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -36,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
   final _pageWidgets = [
-    const FeedPage(),
-    const MyPage(),
+    FeedPage(),
+    MyPage(),
   ];
 
   @override

@@ -38,12 +38,14 @@ class FeedPage extends StatelessWidget {
     {
       'image':
           'https://static-00.iconduck.com/assets.00/instagram-icon-1024x1024-8qt57uwd.png',
-      'likes': "704,899"
+      'likes': "704,899",
+      'description': 'Exciting Updates Alert! 🚀 Swipe left to dive into the latest features and enhancements designed just for you. From sleek designs to powerful functionalities, your Instagram experience is getting a boost! 🌟✨'
     },
     {
       'image':
           'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
-      'likes': "5"
+      'likes': "5",
+      'description': 'きれいな画像'
     },
   ];
 

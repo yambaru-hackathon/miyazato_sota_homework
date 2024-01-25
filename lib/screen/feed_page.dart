@@ -18,6 +18,7 @@ class Styles {
 class FeedPage extends StatelessWidget {
   FeedPage({Key? key}) : super(key: key);
 
+  //need to fix data structure
   final List<Map> postProfiles = [
     {
       'image':

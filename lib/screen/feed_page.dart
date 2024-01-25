@@ -69,7 +69,8 @@ class FeedPage extends StatelessWidget {
             PostProfileWidget(profiles: postProfiles[0]),
             PostItemWidget(postItem: postItems[0]),
             PostProfileWidget(profiles: postProfiles[1]),
-            PostItemWidget(postItem: postItems[1])
+            PostItemWidget(postItem: postItems[1]),
+            const SizedBox(height: 300)
           ],
         ),
       ),
@@ -169,10 +170,10 @@ class PostItemWidget extends StatelessWidget {
             ],
           ),
           Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
               child: Text('「いいね！」${postItem['likes']}件',
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 13))),
+                      fontWeight: FontWeight.bold, fontSize: 14))),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ReadMoreText(
@@ -182,29 +183,12 @@ class PostItemWidget extends StatelessWidget {
                 trimMode: TrimMode.Line,
                 trimCollapsedText: '続きを読む',
                 trimExpandedText: '閉じる',
-                postDataTextStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold,),
-                moreStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
-                lessStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold,),
+                moreStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.grey),
+                lessStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.grey),
               )),
         ],
       ),
     ));
-  }
-
-  Widget createDescriptionWidget(bool readMore) {
-    if (readMore) {
-      return Text(postItem['description'],
-          style: const TextStyle(fontSize: 12));
-    } else {
-      return Expanded(
-        child: (
-          Text(
-            postItem['description'],
-            style: const TextStyle(fontSize: 12),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            )),
-      );
-    }
   }
 }

@@ -33,6 +33,13 @@ class FeedPage extends StatelessWidget {
       'verified': false,
       'location': '東京',
     },
+    {
+      'image':
+          'https://cdn-icons-png.flaticon.com/512/1077/1077114.png',
+      'name': 'undefined',
+      'verified': true,
+      'location': '',
+    }
   ];
 
   final List<Map> postItems = [
@@ -48,6 +55,12 @@ class FeedPage extends StatelessWidget {
           'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1706054400&semt=sph',
       'likes': "5",
       'description': 'きれいな画像'
+    },
+    {
+      'image':
+          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
+      'likes': '102',
+      'description': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     },
   ];
 
@@ -70,7 +83,9 @@ class FeedPage extends StatelessWidget {
             PostItemWidget(postItem: postItems[0]),
             PostProfileWidget(profiles: postProfiles[1]),
             PostItemWidget(postItem: postItems[1]),
-            const SizedBox(height: 300)
+            PostProfileWidget(profiles: postProfiles[2]),
+            PostItemWidget(postItem: postItems[2]),
+            const SizedBox(height: 100)
           ],
         ),
       ),

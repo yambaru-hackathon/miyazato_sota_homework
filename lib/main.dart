@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,18 +34,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _second = 0;
+  Timer? _timer;
+  bool _isRunning = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // 1秒ごとにカウントアップ
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        debugPrint('$_second');
-        _second++;
-      });
-    });
   }
 
   @override
@@ -56,11 +50,66 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text(
-          '$_second',
-          style: const TextStyle(fontSize: 64),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '$_second',
+              style: const TextStyle(fontSize: 64),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                toggleTimer();
+              },
+              child: Text(
+                _isRunning ? 'stop' : 'start',
+                style: TextStyle(color: _isRunning ? Colors.red : Colors.green),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                resetTimer();
+              },
+              child: Text(
+                'reset',
+              ),
+            ),
+          ],
         ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void toggleTimer() {
+    if (_isRunning) {
+      _timer?.cancel();
+    } else {
+      _timer = Timer.periodic(
+        const Duration(seconds: 1), (timer) {
+          setState(() {
+            _second++;
+          });
+          if (_second == 10) {
+            resetTimer();
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NextPage()),
+            );
+          }
+        }
+      );
+    }
+    setState(() {
+      _isRunning = !_isRunning;
+    });
+  }
+
+  void resetTimer() {
+    _timer?.cancel();
+    setState(() {
+      _second = 0;
+      _isRunning = false;
+    });
   }
 }

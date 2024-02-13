@@ -33,13 +33,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _centiSecond = 0;
   int _second = 0;
+  int _minute = 0;
   Timer? _timer;
   bool _isRunning = false;
+
+  String _timerText = '';
 
   @override
   void initState() {
     super.initState();
+
+    setState(() {
+      _timerText = '${_minute.toString().padLeft(2, '0')}:${_second.toString().padLeft(2, '0')}.${_centiSecond.toString().padLeft(2, '0')}';
+    });
   }
 
   @override
@@ -54,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '$_second',
+              _timerText,
               style: const TextStyle(fontSize: 64),
             ),
             ElevatedButton(
@@ -70,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 resetTimer();
               },
-              child: Text(
+              child: const Text(
                 'reset',
               ),
             ),
@@ -85,18 +93,26 @@ class _MyHomePageState extends State<MyHomePage> {
       _timer?.cancel();
     } else {
       _timer = Timer.periodic(
-        const Duration(seconds: 1), (timer) {
-          setState(() {
-            _second++;
-          });
-          if (_second == 10) {
-            resetTimer();
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NextPage()),
-            );
+        const Duration(milliseconds: 10), (timer) {
+          if (_centiSecond == 99) {
+            setState(() {
+              _second++;
+              _centiSecond = 0;
+            }); 
+          } else if (_second == 59) {
+            setState(() {
+              _minute++;
+              _second = 0;
+            });
+          } else {
+            setState(() {
+              _centiSecond++;
+            });
           }
+
+          setState(() {
+            _timerText = '${_minute.toString().padLeft(2, '0')}:${_second.toString().padLeft(2, '0')}.${_centiSecond.toString().padLeft(2, '0')}';
+          });
         }
       );
     }

@@ -125,7 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
     _timer?.cancel();
     setState(() {
       _second = 0;
+      _centiSecond = 0;
+      _minute = 0;
       _isRunning = false;
+      _timerText = '${_minute.toString().padLeft(2, '0')}:${_second.toString().padLeft(2, '0')}.${_centiSecond.toString().padLeft(2, '0')}';
     });
   }
 }

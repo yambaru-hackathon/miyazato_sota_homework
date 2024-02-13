@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
               _second++;
               _centiSecond = 0;
             }); 
-          } else if (_second == 59) {
+          } else if (_second == 60) {
             setState(() {
               _minute++;
               _second = 0;

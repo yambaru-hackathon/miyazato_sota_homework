@@ -72,49 +72,53 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: users
-          .map((user) => ListTile(
-            title: Text(user.first), 
-            subtitle: Text(user.last),
-            trailing: Text(user.born.toString()),
-            onTap:() {
-              showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Select Year"),
-          content: Container( // Need to use container to add size constraint.
-            width: 300,
-            height: 300,
-            child: YearPicker(
-              firstDate: DateTime(DateTime.now().year - 100, 1),
-              lastDate: DateTime(DateTime.now().year + 100, 1),
-              initialDate: DateTime.now(),
-              selectedDate: _selectedDate,
-              onChanged: (DateTime dateTime) {
-                setState(() {
-                  _selectedDate = dateTime;
-                });
+            .map((user) => ListTile(
+                  title: Text(user.first),
+                  subtitle: Text(user.last),
+                  trailing: Text(user.born.toString()),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Select Year"),
+                          content: Container(
+                            // Need to use container to add size constraint.
+                            width: 300,
+                            height: 300,
+                            child: YearPicker(
+                              firstDate: DateTime(DateTime.now().year - 100, 1),
+                              lastDate: DateTime(DateTime.now().year + 100, 1),
+                              initialDate: DateTime.now(),
+                              selectedDate: _selectedDate,
+                              onChanged: (DateTime dateTime) {
+                                setState(() {
+                                  _selectedDate = dateTime;
+                                });
 
-                FirebaseFirestore.instance.collection("users").doc(user.id).update({
-                  "born": _selectedDate.year.toString(),
-                });
+                                FirebaseFirestore.instance
+                                    .collection("users")
+                                    .doc(user.id)
+                                    .update({
+                                  "born": _selectedDate.year.toString(),
+                                });
 
-                Navigator.pop(context);
-                _fetchFromFirebase();
-              },
-            ),
-          ),
-        );
-      },
-    );
-            },
-            onLongPress: () async {
-              final db = FirebaseFirestore.instance;
-              await db.collection("users").doc(user.id).delete();
-              _fetchFromFirebase();
-            },
-          ))
-        .toList(),
+                                Navigator.pop(context);
+                                _fetchFromFirebase();
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  onLongPress: () async {
+                    final db = FirebaseFirestore.instance;
+                    await db.collection("users").doc(user.id).delete();
+                    _fetchFromFirebase();
+                  },
+                ))
+            .toList(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _goToAddPage,
@@ -125,10 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _goToAddPage() async {
-    
     await Navigator.push(
       context,
-      MaterialPageRoute( 
+      MaterialPageRoute(
         builder: (context) => AddPage(),
       ),
     );
